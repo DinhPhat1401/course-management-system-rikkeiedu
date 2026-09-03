@@ -13,26 +13,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/analytics")
+@RequestMapping("/api/reports")
 @RequiredArgsConstructor
 public class AnalyticsController {
 
     private final AnalyticsService analyticsService;
 
-    @GetMapping("/top-courses")
+    @GetMapping("/top_courses")
     public ResponseEntity<ApiResponse<List<TopCourseDto>>> getTopCourses(@RequestParam(defaultValue = "10") int limit) {
         List<TopCourseDto> topCourses = analyticsService.getTopCourses(limit);
         return ResponseEntity.ok(ApiResponse.success(topCourses, "Lấy danh sách khóa học phổ biến thành công", 200));
     }
 
-    @GetMapping("/student-progress/{studentId}")
+    @GetMapping("/student_progress/{studentId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER') or (hasRole('STUDENT') and principal.user.userId == #studentId)")
     public ResponseEntity<ApiResponse<StudentProgressDto>> getStudentProgress(@PathVariable Integer studentId) {
         StudentProgressDto progress = analyticsService.getStudentProgress(studentId);
         return ResponseEntity.ok(ApiResponse.success(progress, "Lấy thống kê tiến độ học viên thành công", 200));
     }
 
-    @GetMapping("/teacher-overview/{teacherId}")
+    @GetMapping("/teacher_courses_overview/{teacherId}")
     @PreAuthorize("hasAnyRole('ADMIN') or (hasRole('TEACHER') and principal.user.userId == #teacherId)")
     public ResponseEntity<ApiResponse<TeacherOverviewDto>> getTeacherOverview(@PathVariable Integer teacherId) {
         TeacherOverviewDto overview = analyticsService.getTeacherOverview(teacherId);
