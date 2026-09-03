@@ -1,8 +1,8 @@
 spring.application.name=course-management-system
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/course_management
-spring.datasource.username=postgres
-spring.datasource.password=postgres
+spring.datasource.url=jdbc:postgresql://localhost:5432/course_management_system
+spring.datasource.username=YOUR_DB_USERNAME
+spring.datasource.password=YOUR_DB_PASSWORD
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 spring.jpa.hibernate.ddl-auto=update
@@ -11,5 +11,5 @@ spring.jpa.properties.hibernate.format_sql=true
 
 server.port=8080
 
-jwt.secret=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+jwt.secret=YOUR_JWT_SECRET_KEY_HERE_MAKE_IT_LONG_ENOUGH
 jwt.expiration=86400000
